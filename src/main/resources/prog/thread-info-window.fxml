@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="prog.controllers.ThreadInfoController"
+            prefHeight="600.0" prefWidth="800.0">
+
+    <VBox alignment="TOP_CENTER" spacing="10">
+        <!-- Верхній рядок із Label та Button -->
+        <HBox alignment="CENTER_LEFT" spacing="20">
+            <Label fx:id="totalTimeLabel" text="Total Time:" />
+            <Button text="Close" onAction="#handleClose" />
+        </HBox>
+
+        <!-- Таблиця всередині ScrollPane -->
+        <ScrollPane fitToWidth="true" fitToHeight="true">
+            <TableView fx:id="threadTable">
+                <columns>
+                    <TableColumn fx:id="threadIdColumn" text="Thread ID" minWidth="200" />
+                    <TableColumn fx:id="statusColumn" text="Status" minWidth="200" />
+                    <TableColumn fx:id="resultColumn" text="Result" minWidth="200" />
+                    <TableColumn fx:id="outputColumn" text="Output" minWidth="300" />
+                </columns>
+            </TableView>
+        </ScrollPane>
+    </VBox>
+</AnchorPane>
