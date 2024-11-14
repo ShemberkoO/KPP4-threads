@@ -5,6 +5,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
+import prog.controllers.ThreadInfoController;
+import prog.models.ThreadInfoModel;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -16,7 +18,7 @@ import static org.mockito.Mockito.*;
 public class FileProcessorTaskTest {
 
     private File testFile;
-    private String[] threadInfo;
+    private ThreadInfoModel threadInfo;
     private Semaphore semaphore;
 
     @Mock
@@ -39,7 +41,7 @@ public class FileProcessorTaskTest {
             writer.write("Hello again\n");
         }
 
-        threadInfo = new String[3];
+        threadInfo = new ThreadInfoModel("","","", "");
         semaphore = new Semaphore(1);
 
         threadInfoUpdaterMock = mock(FileProcessorTask.ThreadInfoUpdater.class);
@@ -58,11 +60,11 @@ public class FileProcessorTaskTest {
                 result.substring(0,testFile.getName().length() + 4 + 10));
 
         // Перевірка контенту threadInfo після обробки
-        assertEquals("Completed", threadInfo[1]);
-        assertEquals("Words: 3", threadInfo[2]);
+        assertEquals("Completed", threadInfo.threadStatusProperty().get());
+        assertEquals("Words: 3", threadInfo.threadResultProperty().get());
 
 
-        verify(threadInfoUpdaterMock, times(2)).update(any(String[].class), eq(1));
+        verify(threadInfoUpdaterMock, times(2)).update(any(ThreadInfoModel.class), eq(1));
     }
 
    @Test

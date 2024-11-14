@@ -4,17 +4,19 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="prog.controllers.MainController">
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="prog.controllers.MainController"
+      spacing="15" alignment="CENTER" style="-fx-padding: 20; -fx-background-color: #f0f0f0; -fx-border-color: #d3d3d3; -fx-border-width: 1;">
 
-    <Label fx:id="welcomeText" text="Виберіть директорію для обробки текстових файлів" />
+    <Label fx:id="welcomeText" text="Виберіть директорію для обробки текстових файлів"
+           style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #333;" />
 
-    <Button text="Вибрати директорію" onAction="#onChooseDirectoryButtonClick" />
+    <Button text="Вибрати директорію" onAction="#onChooseDirectoryButtonClick"
+            style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 14; -fx-pref-width: 200;" />
 
-    <TextField fx:id="threadCountInput" promptText="Введіть кількість потоків" />
+    <TextField fx:id="threadCountInput" promptText="Введіть кількість потоків"
+               style="-fx-font-size: 14; -fx-pref-width: 200; -fx-padding: 5; -fx-border-color: #d3d3d3; -fx-background-radius: 5;" />
 
-    <Button fx:id="startButton" text="Почати обробку" onAction="#onStartButtonClick" />
+    <Button fx:id="startButton" text="Почати обробку" onAction="#onStartButtonClick"
+            style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-size: 14; -fx-pref-width: 200;" />
 
-    <VBox fx:id="taskContainer" spacing="5">
-
-    </VBox>
 </VBox>

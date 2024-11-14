@@ -1,6 +1,7 @@
 package prog;
 
 import javafx.application.Platform;
+import prog.models.ThreadInfoModel;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -12,13 +13,13 @@ import java.util.regex.Pattern;
 
 public class FileProcessorTask implements Callable<String> {
     private final File file;
-    private final String[] threadInfo;
+    private final ThreadInfoModel threadInfo;
     private final Semaphore semaphore;
     private final ThreadInfoUpdater updateThreadInfo;
     private final String wordToFind;
     private final int num;
 
-    public FileProcessorTask(File file,String wordToFind, String[] threadInfo, Semaphore semaphore, ThreadInfoUpdater updateThreadInfo, int num) {
+    public FileProcessorTask(File file,String wordToFind, ThreadInfoModel threadInfo, Semaphore semaphore, ThreadInfoUpdater updateThreadInfo, int num) {
         this.file = file;
         this.wordToFind = wordToFind;
         this.num = num;
@@ -29,14 +30,14 @@ public class FileProcessorTask implements Callable<String> {
 
     @Override
     public String call() throws Exception {
-        threadInfo[0] = Thread.currentThread().getName();
-        threadInfo[1] = "Processing";
-        threadInfo[2] = "Pending";
+        threadInfo.setThreadNameProperty(Thread.currentThread().getName());
+        threadInfo.setThreadStatusProperty("Processing");
+        threadInfo.setThreadResultProperty("Pending");
         long startTime = System.currentTimeMillis();
 
         Platform.runLater(() -> updateThreadInfo.update(threadInfo, num));
 
-        Thread.sleep(10000);
+
 
         FileReader r = new FileReader(file);
         BufferedReader reader = new BufferedReader(r);
@@ -46,11 +47,12 @@ public class FileProcessorTask implements Callable<String> {
 
         while ((line = reader.readLine()) != null) {
             wordCount += countOccurrences(line, wordToFind);
+            Thread.sleep(250);
         }
         reader.close();
 
-        threadInfo[1] = "Completed";
-        threadInfo[2] = "Words: " + wordCount;
+        threadInfo.setThreadStatusProperty("Completed");
+        threadInfo.setThreadResultProperty("Words: " + wordCount);
 
         Platform.runLater(() -> updateThreadInfo.update(threadInfo, num ));
         synchronized (semaphore) {
@@ -73,6 +75,6 @@ public class FileProcessorTask implements Callable<String> {
 
     @FunctionalInterface
     public interface ThreadInfoUpdater {
-        void update(String[] threadInfo, int taskNumber);
+        void update(ThreadInfoModel threadInfo, int taskNumber);
     }
 }

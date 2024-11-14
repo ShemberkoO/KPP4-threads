@@ -9,13 +9,11 @@
             prefHeight="600.0" prefWidth="800.0">
 
     <VBox alignment="TOP_CENTER" spacing="10">
-        <!-- Верхній рядок із Label та Button -->
         <HBox alignment="CENTER_LEFT" spacing="20">
             <Label fx:id="totalTimeLabel" text="Total Time:" />
             <Button text="Close" onAction="#handleClose" />
         </HBox>
 
-        <!-- Таблиця всередині ScrollPane -->
         <ScrollPane fitToWidth="true" fitToHeight="true">
             <TableView fx:id="threadTable">
                 <columns>
