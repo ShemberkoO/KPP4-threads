@@ -25,6 +25,9 @@ public class MainController {
     @FXML
     private TextField threadCountInput;
 
+    @FXML
+    private TextField wordInput ;
+
     private List<File> filesToProcess;
 
     @FXML
@@ -35,7 +38,8 @@ public class MainController {
     public void onStartButtonClick() {
 
         int threadCount = Integer.parseInt(threadCountInput.getText());
-        wordToFind = "find";
+        wordToFind = wordInput.getText().trim();
+
         if(filesToProcess != null && !filesToProcess.isEmpty() && isValid(wordToFind.trim())) {
             openThreadInfoWindow(threadCount);
         }

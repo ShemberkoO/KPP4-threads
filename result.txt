@@ -1,6 +1,6 @@
-Processed важливе повідомлення – копія (2).txt in 10005ms
-Processed важливе повідомлення – копія (3).txt in 10005ms
-Processed важливе повідомлення – копія – копія (2).txt in 10007ms
-Processed важливе повідомлення – копія – копія.txt in 10002ms
-Processed важливе повідомлення – копія.txt in 10002ms
-Processed важливе повідомлення.txt in 10001ms
+Processed 1.txt in 5017ms
+Processed 2.txt in 5017ms
+Processed 3.txt in 5017ms
+Processed 4.txt in 5014ms
+Processed 5.txt in 5014ms
+Processed 6.txt in 5017ms
